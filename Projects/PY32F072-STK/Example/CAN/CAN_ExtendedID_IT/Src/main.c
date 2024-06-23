@@ -131,7 +131,7 @@ int main(void)
   */
 void HAL_CAN_RxCpltCallback(CAN_HandleTypeDef *hcan)
 {
-  uint32_t i;
+  uint32_t i = 0;
   
   /* Read received messages */
   HAL_CAN_GetRxMessage(hcan, &CanRxHeader, RxData);
@@ -160,8 +160,8 @@ static void APP_SystemClockConfig(void)
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;                          /* Enable HSI */
   RCC_OscInitStruct.HSIDiv = RCC_HSI_DIV1;                          /* HSI 1 frequency division */
   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_8MHz;  /* Configure HSI clock at 8MHz */
-  RCC_OscInitStruct.HSEState = RCC_HSE_OFF;                         /* Close HSE */
-  /*RCC_OscInitStruct.HSEFreq = RCC_HSE_16_32MHz;*/
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;                          /* Enable HSE */
+  RCC_OscInitStruct.HSEFreq = RCC_HSE_16_32MHz;
   RCC_OscInitStruct.LSIState = RCC_LSI_OFF;                         /* Close LSI */
   RCC_OscInitStruct.LSEState = RCC_LSE_OFF;                         /* Close LSE */
   /*RCC_OscInitStruct.LSEDriver = RCC_LSEDRIVE_MEDIUM;*/
@@ -176,7 +176,7 @@ static void APP_SystemClockConfig(void)
 
   /* Clock source configuration */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1; /* Choose to configure clock HCLK, SYSCLK, PCLK1 */
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSISYS; /* Select HSI as the system clock */
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSE; /* Select HSE as the system clock */
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;     /* AHB clock 1 division */
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;      /* APB clock 1 division */
   /* Configure clock source */

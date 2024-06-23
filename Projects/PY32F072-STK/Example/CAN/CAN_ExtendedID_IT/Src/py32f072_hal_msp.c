@@ -54,7 +54,7 @@ void HAL_MspInit(void)
 void HAL_CAN_MspInit(CAN_HandleTypeDef *hcan)
 {
   RCC_OscInitTypeDef  OscInitstruct = {0};
-  GPIO_InitTypeDef  GPIO_InitStruct;
+  GPIO_InitTypeDef  GPIO_InitStruct = {0};
 
   /* Enable HSE (24MHz) */
   OscInitstruct.OscillatorType  = RCC_OSCILLATORTYPE_HSE;
