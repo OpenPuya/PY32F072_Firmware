@@ -1459,7 +1459,7 @@ __STATIC_INLINE uint32_t LL_I2S_GetDataFormat(SPI_TypeDef *SPIx)
   */
 __STATIC_INLINE void LL_I2S_SetClockPolarity(SPI_TypeDef *SPIx, uint32_t ClockPolarity)
 {
-  SET_BIT(SPIx->I2SCFGR, ClockPolarity);
+  MODIFY_REG(SPIx->I2SCFGR, SPI_I2SCFGR_CKPOL, ClockPolarity);
 }
 
 /**
